@@ -10,13 +10,25 @@ import logger from 'redux-logger';
 // Import saga middleware
 import createSagaMiddleware from 'redux-saga';
 import axios from 'axios';
+import {takeEvery, put} from 'redux-saga/effects';
 
 // Create the rootSaga generator function
 function* rootSaga() {
-
+    yield takeEvery('FETCH_MOVIES', fetchMovies)
 }
 
 // Create generator function for movies get
+
+function* fetchMovies(){
+    try{
+        const response = yield axios.get('/movies')
+        yield console.log('Success getting movies!', response)
+    }
+    catch (error){
+       console.log('Error getting movies!', error)
+    }
+}
+
 
 
 // Create sagaMiddleware

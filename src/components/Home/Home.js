@@ -1,6 +1,11 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
 
 class Home extends Component{
+    componentDidMount(){
+        this.props.dispatch({type: 'FETCH_MOVIES'})
+    }
+
     render(){
         return(
             <>
@@ -10,4 +15,4 @@ class Home extends Component{
     }
 }
 
-export default Home;
+export default connect()(Home);
