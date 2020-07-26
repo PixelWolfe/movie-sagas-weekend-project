@@ -44,8 +44,8 @@ This should display all of the movies in the movie database. When a movie poster
  [x] make a <Home/> component
     [x]Make a get to the database for all of the movies
         [x] on the client conditionally render all movies
-            [] have onClick this.props.history.push('/details')
-            [] maybe do a redux state to save activeMovie for details component to load info with
+            [x] have onClick this.props.history.push('/details')
+        
 
 ### Details Page
 
@@ -68,12 +68,12 @@ The details page should have the buttons:
 | {EDIT}{BACK} |
 ----------------
 
-  [] create a details component
-    [] component should either access
+  [x] create a details component
+    [x] component should either access
         [id, title, poster, description]
 
-    [] in order to get the genres, get genre_id from id which we have
-        [] loop through the genres that are returned and put on dom
+    [x] in order to get the genres, get genre_id from id which we have
+        [x] loop through the genres that are returned and put on dom
 
     [] create a back button
         [] back button should return us to home
