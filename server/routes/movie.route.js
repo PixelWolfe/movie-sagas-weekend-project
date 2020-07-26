@@ -26,8 +26,9 @@ router.get('/', (req,res)=>{
 
 router.put('/', (req,res)=>{
 
-    let queryString = `UPDATE movies SET description=$1 WHERE id=$2;`;
-    pool.query(queryString, [req.body.payload.description, req.body.payload.id])
+    let queryString = `UPDATE movies SET description=$1, title=$2 WHERE id=$3;`;
+
+    pool.query(queryString, [req.body.payload.description, req.body.payload.title, req.body.payload.id])
         .then(response=>{
             res.sendStatus(201);
         })

@@ -45,8 +45,8 @@ class Edit extends Component{
     }
 
     updateMovie = ()=>{
-        //make a put request with a saga to update description
-        const payload = {payload: {id: this.state.id, description: this.state.description}}
+        //make a put request with a saga to update description/title
+        const payload = {payload: {id: this.state.id, description: this.state.description, title: this.state.title}}
         this.props.dispatch({type: 'UPDATE_MOVIE', payload})
 
         this.props.history.push('/details/'+this.state.id);
@@ -63,10 +63,10 @@ class Edit extends Component{
         this.props.dispatch({type: 'DELETE_GENRE', payload})
     }
 
-    textEntered = (event)=>{
+    textEntered = (event, property)=>{
         this.setState({
             ...this.state,
-            description: event.target.value
+            [property]: event.target.value
         })
     }
     render(){
@@ -93,11 +93,19 @@ class Edit extends Component{
                                 <Card style={cardStyle}>
                                     <CardHeader title={this.state.title} style={yPadding}/>
                                     <CardContent>
-                                        <img src={this.state.poster}></img>
+                                        <h4 style={yMargin}>Edit Title</h4>
+                                        <TextField 
+                                        style={textField}        
+                                        label="Title"
+                                        variant="filled" 
+                                        inputProps={{maxLength: 120}}
+                                        value={this.state.title}
+                                        onChange={(event)=>this.textEntered(event, 'title')} 
+                                        />
+                                        <br/>
+                                        <br/>
                                         {/*---------- Edit Descriptons -------- */}
-                                        <Typography>
-                                            <h3 style={yMargin}>Edit Description</h3>
-                                        </Typography>
+                                        <h4 style={yMargin}>Edit Description</h4>
                                         <TextField 
                                             style={textField}
                                             rows={10} 
@@ -106,8 +114,10 @@ class Edit extends Component{
                                             variant="filled" 
                                             inputProps={{maxLength: 1250}}
                                             value={this.state.description}
-                                            onChange={this.textEntered} 
+                                            onChange={(event)=>this.textEntered(event, 'description')} 
                                             />
+                                        <br/>
+                                        <br/>
                                         {/*---------- Edit Genres -------- */}  
                                         <h4 style={yMargin}>Edit Genres</h4>
                                         <p style={yMargin}>
@@ -120,9 +130,6 @@ class Edit extends Component{
                                         {/*---------- Clear or Save -------- */}  
                                         <Button variant='contained' color="secondary" onClick={this.backToDetails}>Back</Button>
                                         <Button variant="contained" color="primary" onClick={this.updateMovie}>Save</Button>
-                                        <br/>
-                                        <br/>
-                                        {JSON.stringify(this.state)}
                                     </CardContent>
                                 </Card>
                             </Fade>
