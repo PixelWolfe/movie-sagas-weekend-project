@@ -38,7 +38,7 @@ function* fetchGenres(){
     try{
         const response = yield axios.get('/genres');
         yield console.log('Success getting genres!', response.data);
-        yield put({type: 'SET_MOVIES', payload: response.data});
+        yield put({type: 'SET_GENRES', payload: response.data});
     }
     catch (error){
        console.log('Error getting genres!', error);

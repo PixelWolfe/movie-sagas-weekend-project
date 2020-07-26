@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router';
 import {Fade} from 'react-reveal';
-import {Chip, Icon, Button, Card, CardHeader, CardContent, Grid, TextField, Typography} from '@material-ui/core';
-import {Done} from '@material-ui/icons';
+import {Chip,
+ Button, Card, CardHeader, CardContent, Grid, TextField, Typography} from '@material-ui/core';
 
 class Edit extends Component{
     state = {
@@ -16,7 +16,7 @@ class Edit extends Component{
     }
     componentDidMount(){
         //on load grab all the movies from the database to make sure nothing has been updated
-        this.props.dispatch({type: 'FETCH_MOVIES'})
+        this.props.dispatch({type: 'FETCH_MOVIES'});
     }
 
     componentDidUpdate(previousProps){
