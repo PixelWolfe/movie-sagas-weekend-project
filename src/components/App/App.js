@@ -1,10 +1,10 @@
-import React, { Component, Children } from 'react';
+import React, {Component} from 'react';
 import Home from '../Home/Home';
 import Header from '../Header/Header';
 import Details from '../Details/Details';
 import Edit from '../Edit/Edit';
-import {Link, Route, HashRouter as Router} from 'react-router-dom';
-import {Grid, jssPreset} from '@material-ui/core';
+import {Route, HashRouter as Router} from 'react-router-dom';
+import {Grid} from '@material-ui/core';
 
 
 class App extends Component {
@@ -12,9 +12,6 @@ class App extends Component {
   render() {
     const mainStyle={
       background: 'slategrey'
-    }
-    const secondaryStyle={
-      background: 'darkslategrey'
     }
     const viewHeight={
       height: '100vh',

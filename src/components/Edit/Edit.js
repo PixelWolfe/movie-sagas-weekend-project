@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router';
-import {Link} from 'react-router-dom';
 import {Fade} from 'react-reveal';
 import {Chip, Icon, Button, Card, CardHeader, CardContent, Grid, TextField, Typography} from '@material-ui/core';
 import {Done} from '@material-ui/icons'
@@ -14,7 +13,7 @@ class Edit extends Component{
         poster: '',
         genres: [],
         editState: {
-            
+
         }
     }
     componentDidMount(){
@@ -47,9 +46,9 @@ class Edit extends Component{
     }
 
     updateMovie = ()=>{
-        //make a put request with a saga to update
-        //payload = {payload: {}}
-        //this.props.dispatch({type: 'UPDATE_MOVIE', })
+        //make a put request with a saga to update description
+        const payload = {payload: {id: this.state.id, description: this.state.description}}
+        this.props.dispatch({type: 'UPDATE_MOVIE', payload})
 
         this.props.history.push('/details/'+this.state.id);
     }
@@ -58,6 +57,12 @@ class Edit extends Component{
 
     }
 
+    textEntered = (event)=>{
+        this.setState({
+            ...this.state,
+            description: event.target.value
+        })
+    }
     render(){
         const cardStyle = {
             background: 'linear-gradient(135deg, coral, darkgray )'
@@ -83,6 +88,7 @@ class Edit extends Component{
                                     <CardHeader title={this.state.title} style={yPadding}/>
                                     <CardContent>
                                         <img src={this.state.poster}></img>
+                                        {/*---------- Edit Descriptons -------- */}
                                         <Typography>
                                             <h3 style={yMargin}>Edit Description</h3>
                                         </Typography>
@@ -93,8 +99,10 @@ class Edit extends Component{
                                             label="Description"
                                             variant="filled" 
                                             inputProps={{maxLength: 1250}}
-                                            value={this.state.description}  
+                                            value={this.state.description}
+                                            onChange={this.textEntered} 
                                             />
+                                        {/*---------- Edit Genres -------- */}  
                                         <h4 style={yMargin}>Edit Genres</h4>
                                         <p style={yMargin}>
                                             {
@@ -103,8 +111,12 @@ class Edit extends Component{
                                             }
                                         </p>
                                         <br></br>
+                                        {/*---------- Clear or Save -------- */}  
                                         <Button variant='contained' color="secondary" onClick={this.backToDetails}>Clear</Button>
                                         <Button variant="contained" color="primary" onClick={this.updateMovie}>Save</Button>
+                                        <br/>
+                                        <br/>
+                                        {JSON.stringify(this.state)}
                                     </CardContent>
                                 </Card>
                             </Fade>

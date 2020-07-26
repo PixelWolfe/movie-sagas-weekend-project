@@ -23,5 +23,17 @@ router.get('/', (req,res)=>{
         })
 })
 
+router.put('/', (req,res)=>{
+
+    let queryString = `UPDATE movies SET description=$1 WHERE id=$2;`;
+    pool.query(queryString, [req.body.payload.description, req.body.payload.id])
+        .then(response=>{
+            res.sendStatus(201);
+        })
+        .catch(error=>{
+            console.log('error updating movie description', error);
+            res.sendStatus(500);
+        })
+})
 
 module.exports = router;
