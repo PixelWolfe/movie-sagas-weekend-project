@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {withRouter} from 'react-router';
 import {Fade} from 'react-reveal';
 import {Chip, Icon, Button, Card, CardHeader, CardContent, Grid, TextField, Typography} from '@material-ui/core';
-import {Done} from '@material-ui/icons'
+import {Done} from '@material-ui/icons';
 class Edit extends Component{
 
     state = {
@@ -12,9 +12,7 @@ class Edit extends Component{
         description: '',
         poster: '',
         genres: [],
-        editState: {
-
-        }
+        genre_ids: []
     }
     componentDidMount(){
         //on load grab all the movies from the database to make sure nothing has been updated
@@ -36,7 +34,8 @@ class Edit extends Component{
                 title: movie.title,
                 poster: movie.poster,
                 description: movie.description,
-                genres: movie.array_agg
+                genres: movie.genre_name_agg,
+                genre_ids: movie.genre_id_agg
             })
         }
     }
@@ -53,8 +52,15 @@ class Edit extends Component{
         this.props.history.push('/details/'+this.state.id);
     }
 
-    handleDelete = ()=>{
-
+    
+    deleteGenre = (index)=>{
+        if(this.state.genres.length <= 1){
+            alert('All movies must have atleast than one genre!');
+            return;
+        }
+        //delete from database and refresh
+        const payload = {payload: {movie_id: this.state.id, genre_id: this.state.genre_ids[index]}}
+        this.props.dispatch({type: 'DELETE_GENRE', payload})
     }
 
     textEntered = (event)=>{
@@ -106,13 +112,13 @@ class Edit extends Component{
                                         <h4 style={yMargin}>Edit Genres</h4>
                                         <p style={yMargin}>
                                             {
-                                                this.state.genres.map(genre=>
-                                                    <Chip label={genre} onDelete={this.handleDelete}/>)
+                                                this.state.genres.map((genre,index)=>
+                                                    <Chip label={genre} onDelete={()=> this.deleteGenre(index)}/>)
                                             }
                                         </p>
                                         <br></br>
                                         {/*---------- Clear or Save -------- */}  
-                                        <Button variant='contained' color="secondary" onClick={this.backToDetails}>Clear</Button>
+                                        <Button variant='contained' color="secondary" onClick={this.backToDetails}>Back</Button>
                                         <Button variant="contained" color="primary" onClick={this.updateMovie}>Save</Button>
                                         <br/>
                                         <br/>

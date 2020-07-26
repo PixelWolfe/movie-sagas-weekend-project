@@ -14,7 +14,9 @@ class Details extends Component{
         description: '',
         poster: '',
         genres: [],
+        genre_ids: []
     }
+
     componentDidMount(){
         //on load grab all the movies from the database to make sure nothing has been updated
         this.props.dispatch({type: 'FETCH_MOVIES'})
@@ -35,7 +37,8 @@ class Details extends Component{
                 title: movie.title,
                 poster: movie.poster,
                 description: movie.description,
-                genres: movie.array_agg
+                genres: movie.genre_name_agg,
+                genre_ids: movie.genre_id_agg
             })
         }
     }
@@ -77,8 +80,8 @@ class Details extends Component{
                                         <p style={yMargin}>{this.state.genres.map(genre=><button variant='outlined'>{genre}</button>)}</p>
                                         <br></br>
                                         {/*Links to go back to home page or edit page*/}
-                                        <Button variant='contained' color="secondary" onClick={this.historyHome}>Back</Button>  
-                                        <Button variant="contained" color="primary" onClick={this.historyEdit}>Edit</Button>  
+                                        <Button variant='contained' color="secondary" onClick={this.historyHome}>Movies</Button> 
+                                        <Button variant="contained" color="primary" onClick={this.historyEdit}>Edit Description</Button>  
                                     </CardContent>
                                 </Card>
                             </Fade>

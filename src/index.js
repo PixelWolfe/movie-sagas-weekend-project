@@ -16,6 +16,7 @@ import {takeEvery, put} from 'redux-saga/effects';
 function* rootSaga() {
     yield takeEvery('FETCH_MOVIES', fetchMovies);
     yield takeEvery('UPDATE_MOVIE', updateMovie);
+    yield takeEvery('DELETE_GENRE', deleteGenre);
 }
 
 // Create generator function for movies get
@@ -35,12 +36,28 @@ function* updateMovie(action){
     try{
         const response = yield axios.put('/movies', action.payload);
         yield console.log('Success updating movie!', response.data);
+        yield put({type:'FETCH_MOVIES'});
     }
     catch(error){
-        console.log('Error getting movies!', error);   
+        console.log('Error updating movie!', error);   
     }
 }
 
+function* deleteGenre(action){
+    console.log('action for delete', action.payload)
+    try{
+        const response = yield axios({
+            method: 'DELETE',
+            url: '/movies',
+            data: action.payload
+        });
+        yield console.log('Success deleting genre!', response.data);
+        yield put({type:'FETCH_MOVIES'});
+    }
+    catch(error){
+        console.log('Error deleting genre!', error);   
+    }
+}
 
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();

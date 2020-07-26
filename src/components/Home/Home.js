@@ -50,11 +50,11 @@ class Home extends Component{
                                         <h4 style={topMarginOnly}>
                                             {movie.title}
                                         </h4>
-                                        <p style={topMarginOnly}>{movie.array_agg.map((genre, index)=>
+                                        <p style={topMarginOnly}>{movie.genre_name_agg.map((genre, index)=>
                                             <span key={index} style={genreText}>
                                                 {genre}
                                                 {/*Only include a comma if it is not the last genre in array*/}
-                                                {index < movie.array_agg.length - 1 && ', '}
+                                                {index < movie.genre_name_agg.length - 1 && ', '}
                                             </span>)}
                                         </p>
                                 </CardContent>
