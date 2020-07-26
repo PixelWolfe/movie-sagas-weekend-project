@@ -3,11 +3,9 @@ import {connect} from 'react-redux';
 import {withRouter} from 'react-router';
 import {Link} from 'react-router-dom';
 import {Fade} from 'react-reveal';
-import {Button, Card, CardHeader, CardContent, Grid, Typography} from '@material-ui/core';
-
-
-
-class Details extends Component{
+import {Chip, Icon, Button, Card, CardHeader, CardContent, Grid, TextField, Typography} from '@material-ui/core';
+import {Done} from '@material-ui/icons'
+class Edit extends Component{
 
     state = {
         id: null,
@@ -15,6 +13,9 @@ class Details extends Component{
         description: '',
         poster: '',
         genres: [],
+        editState: {
+            
+        }
     }
     componentDidMount(){
         //on load grab all the movies from the database to make sure nothing has been updated
@@ -41,12 +42,20 @@ class Details extends Component{
         }
     }
 
-    historyHome = ()=>{
-        this.props.history.push('/');
+    backToDetails = ()=>{
+        this.props.history.push('/details/'+this.state.id);
     }
 
-    historyEdit = ()=>{
-        this.props.history.push('/edit/'+this.state.id);
+    updateMovie = ()=>{
+        //make a put request with a saga to update
+        //payload = {payload: {}}
+        //this.props.dispatch({type: 'UPDATE_MOVIE', })
+
+        this.props.history.push('/details/'+this.state.id);
+    }
+
+    handleDelete = ()=>{
+
     }
 
     render(){
@@ -60,26 +69,42 @@ class Details extends Component{
         const yPadding = {
             padding: '10px 0px 0px 0px'
         }
+        const textField = {
+            width: '100%'
+          }
+
         return(
             <>
                { this.state.id != null ?
                 <Grid container justify='center'>
                         <Grid item xs={12} sm={10} md={8} align='center'>
-                            <Fade duration={500}>
+                            <Fade left duration={450}>
                                 <Card style={cardStyle}>
                                     <CardHeader title={this.state.title} style={yPadding}/>
                                     <CardContent>
                                         <img src={this.state.poster}></img>
                                         <Typography>
-                                            <h3 style={yMargin}>Description</h3>
-                                            {this.state.description}
+                                            <h3 style={yMargin}>Edit Description</h3>
                                         </Typography>
-                                        <h4 style={yMargin}>Genres</h4>
-                                        <p style={yMargin}>{this.state.genres.map(genre=><button variant='outlined'>{genre}</button>)}</p>
+                                        <TextField 
+                                            style={textField}
+                                            rows={10} 
+                                            multiline 
+                                            label="Description"
+                                            variant="filled" 
+                                            inputProps={{maxLength: 1250}}
+                                            value={this.state.description}  
+                                            />
+                                        <h4 style={yMargin}>Edit Genres</h4>
+                                        <p style={yMargin}>
+                                            {
+                                                this.state.genres.map(genre=>
+                                                    <Chip label={genre} onDelete={this.handleDelete}/>)
+                                            }
+                                        </p>
                                         <br></br>
-                                        {/*Links to go back to home page or edit page*/}
-                                        <Button variant='contained' color="secondary" onClick={this.historyHome}>Back</Button>  
-                                        <Button variant="contained" color="primary" onClick={this.historyEdit}>Edit</Button>  
+                                        <Button variant='contained' color="secondary" onClick={this.backToDetails}>Clear</Button>
+                                        <Button variant="contained" color="primary" onClick={this.updateMovie}>Save</Button>
                                     </CardContent>
                                 </Card>
                             </Fade>
@@ -98,4 +123,4 @@ const mapStateToProps = (reduxState)=>({
     reduxState
 })
 
-export default connect(mapStateToProps)(withRouter(Details));
+export default connect(mapStateToProps)(withRouter(Edit));

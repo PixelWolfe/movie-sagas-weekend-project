@@ -39,7 +39,7 @@ class Home extends Component{
         }
         return(
             <>
-                <h1>Home Component</h1>
+                <h1>Popular Movies</h1>
                 <Grid container justify='center'>
                     {
                     this.props.reduxState.movies.map((movie)=>

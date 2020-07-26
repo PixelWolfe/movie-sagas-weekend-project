@@ -75,13 +75,13 @@ The details page should have the buttons:
     [x] in order to get the genres, get genre_id from id which we have
         [x] loop through the genres that are returned and put on dom
 
-    [] create a back button
-        [] back button should return us to home
-            [] history push home
+    [x] create a back button
+        [x] back button should return us to home
+            [x] history push home
         
-    [] create edit button
-        [] edit button should bring us to /edit 
-            [] history push edit
+    [x] create edit button
+        [x] edit button should bring us to /edit 
+            [x] history push edit
     
 
 ### Edit Page (CARD FLIP)
@@ -115,11 +115,11 @@ The details page should have the buttons:
 ### General Tasks
     As one of your last projects, it's possible you will be sharing this with employers, so be sure to follow best practices and make it look good!
 
-- [ ] Invest some time in styling it up!
-    - [ ] Research grids for you movie posters on the Move List page
-    - [ ] Add route change animations
+- [x] Invest some time in styling it up!
+    - [x] Research grids for you movie posters on the Move List page
+    - [x] Add route change animations
 - [ ] Commit your code frequently! You should have at 15+ commits on a project of this size. Use branches to help break down your features.
-- [ ] Comment your code.
+- [x] Comment your code.
 - [ ] Update this README to include a description of the project in your own words.
 
 ## Stretch Goals
