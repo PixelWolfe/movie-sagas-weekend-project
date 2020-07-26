@@ -108,7 +108,7 @@ x `Save` button, which should update the title and description in the database a
 - [x] Invest some time in styling it up!
     - [x] Research grids for you movie posters on the Move List page
     - [x] Add route change animations
-- [ ] Commit your code frequently! You should have at 15+ commits on a project of this size. Use branches to help break down your features.
+- [/] Commit your code frequently! You should have at 15+ commits on a project of this size. Use branches to help break down your features.
 - [x] Comment your code.
 - [ ] Update this README to include a description of the project in your own words.
 

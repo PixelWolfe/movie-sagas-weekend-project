@@ -4,8 +4,8 @@ import {withRouter} from 'react-router';
 import {Fade} from 'react-reveal';
 import {Chip, Icon, Button, Card, CardHeader, CardContent, Grid, TextField, Typography} from '@material-ui/core';
 import {Done} from '@material-ui/icons';
-class Edit extends Component{
 
+class Edit extends Component{
     state = {
         id: null,
         title: '',
@@ -52,7 +52,6 @@ class Edit extends Component{
         this.props.history.push('/details/'+this.state.id);
     }
 
-    
     deleteGenre = (index)=>{
         if(this.state.genres.length <= 1){
             alert('All movies must have atleast than one genre!');
@@ -63,85 +62,85 @@ class Edit extends Component{
         this.props.dispatch({type: 'DELETE_GENRE', payload})
     }
 
-    textEntered = (event, property)=>{
-        this.setState({
-            ...this.state,
-            [property]: event.target.value
-        })
+textEntered = (event, property)=>{
+    this.setState({
+        ...this.state,
+        [property]: event.target.value
+    })
+}
+
+render(){
+    const cardStyle = {
+        background: 'linear-gradient(135deg, coral, darkgray )'
     }
-    render(){
-        const cardStyle = {
-            background: 'linear-gradient(135deg, coral, darkgray )'
+    const yMargin = {
+        margin: '10px 0px 0px 0px'
+    }
+    const yPadding = {
+        padding: '10px 0px 0px 0px'
+    }
+    const textField = {
+        width: '100%'
         }
-
-        const yMargin = {
-            margin: '10px 0px 0px 0px'
-        }
-        const yPadding = {
-            padding: '10px 0px 0px 0px'
-        }
-        const textField = {
-            width: '100%'
-          }
-
-        return(
-            <>
-               { this.state.id != null ?
-                <Grid container justify='center'>
-                        <Grid item xs={12} sm={10} md={8} align='center'>
-                            <Fade left duration={450}>
-                                <Card style={cardStyle}>
-                                    <CardHeader title={this.state.title} style={yPadding}/>
-                                    <CardContent>
-                                        <h4 style={yMargin}>Edit Title</h4>
-                                        <TextField 
-                                        style={textField}        
-                                        label="Title"
-                                        variant="filled" 
-                                        inputProps={{maxLength: 120}}
-                                        value={this.state.title}
-                                        onChange={(event)=>this.textEntered(event, 'title')} 
-                                        />
-                                        <br/>
-                                        <br/>
-                                        {/*---------- Edit Descriptons -------- */}
-                                        <h4 style={yMargin}>Edit Description</h4>
-                                        <TextField 
-                                            style={textField}
-                                            rows={10} 
-                                            multiline 
-                                            label="Description"
-                                            variant="filled" 
-                                            inputProps={{maxLength: 1250}}
-                                            value={this.state.description}
-                                            onChange={(event)=>this.textEntered(event, 'description')} 
-                                            />
-                                        <br/>
-                                        <br/>
-                                        {/*---------- Edit Genres -------- */}  
-                                        <h4 style={yMargin}>Edit Genres</h4>
-                                        <p style={yMargin}>
-                                            {
-                                                this.state.genres.map((genre,index)=>
-                                                    <Chip label={genre} onDelete={()=> this.deleteGenre(index)}/>)
-                                            }
-                                        </p>
-                                        <br></br>
-                                        {/*---------- Clear or Save -------- */}  
-                                        <Button variant='contained' color="secondary" onClick={this.backToDetails}>Back</Button>
-                                        <Button variant="contained" color="primary" onClick={this.updateMovie}>Save</Button>
-                                    </CardContent>
-                                </Card>
-                            </Fade>
-                        </Grid>
+    return(
+        <>
+        { 
+        this.state.id != null ?
+            <Grid container justify='center'>
+                <Grid item xs={12} sm={10} md={8} align='center'>
+                    <Fade left duration={450}>
+                        <Card style={cardStyle}>
+                            <CardHeader title={this.state.title} style={yPadding}/>
+                            <CardContent>
+                                <h4 style={yMargin}>Edit Title</h4>
+                                <TextField 
+                                style={textField}        
+                                label="Title"
+                                variant="filled" 
+                                inputProps={{maxLength: 120}}
+                                value={this.state.title}
+                                onChange={(event)=>this.textEntered(event, 'title')} 
+                                />
+                                <br/>
+                                <br/>
+                                {/*---------- Edit Descriptons -------- */}
+                                <h4 style={yMargin}>Edit Description</h4>
+                                <TextField 
+                                    style={textField}
+                                    rows={10} 
+                                    multiline 
+                                    label="Description"
+                                    variant="filled" 
+                                    inputProps={{maxLength: 1250}}
+                                    value={this.state.description}
+                                    onChange={(event)=>this.textEntered(event, 'description')} 
+                                    />
+                                <br/>
+                                <br/>
+                                {/*---------- Edit Genres -------- */}  
+                                <h4 style={yMargin}>Edit Genres</h4>
+                                <p style={yMargin}>
+                                    {
+                                        this.state.genres.map((genre,index)=>
+                                            <Chip label={genre} onDelete={()=> this.deleteGenre(index)}/>)
+                                    }
+                                </p>
+                                <br></br>
+                                {/*---------- Clear or Save -------- */}  
+                                <Button variant='contained' color="secondary" onClick={this.backToDetails}>Back</Button>
+                                <Button variant="contained" color="primary" onClick={this.updateMovie}>Save</Button>
+                            </CardContent>
+                        </Card>
+                    </Fade>
                 </Grid>
-                  :
-                <>
-                </>
-               }
+            </Grid>
+                :
+            <>
             </>
-        )
-    }
+        }
+        </>
+    )
+}
 }
 
 const mapStateToProps = (reduxState)=>({
