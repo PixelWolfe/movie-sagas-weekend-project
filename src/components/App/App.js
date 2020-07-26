@@ -14,7 +14,7 @@ class App extends Component {
       background: 'slategrey'
     }
     const viewHeight={
-      height: '100vh',
+      minHeight: '100vh',
       background: 'slategrey'
     }
     return (
