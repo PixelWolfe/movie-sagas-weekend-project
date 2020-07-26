@@ -21,9 +21,6 @@ class App extends Component {
       //create a grid column
       <div style={viewHeight}>
         <Grid container direction="column">
-          <Grid item style={mainStyle}>
-            <Header/>
-          </Grid>
             <Grid item container>
               <Grid item xs={0} xs={1}/>
               <Grid item xs={12} sm={10} >

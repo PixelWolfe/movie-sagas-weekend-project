@@ -8,7 +8,7 @@ class Header extends Component{
         }
         return(
             <header style={headerStyle}>
-                <h1>This is a header</h1>
+                <h1>Popular Movies</h1>
             </header>
         )
     }
