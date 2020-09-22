@@ -49,8 +49,6 @@ This should display all of the movies in the movie database. When a movie poster
 
 ### Details Page
 
-
-
 This should show all details **including genres**, for the selected movie.
 The details page should have the buttons:
 
@@ -60,7 +58,7 @@ The details page should have the buttons:
 > Base functionality does not require the movie details to load correctly after refresh of the browser.
 
 ----------------
-| [          ] |
+| [          ] |     {my idea for a movie card}
 |              |           rough example
 | [          ] |    detail card/div component
 |   Details    |            Grid MUI
@@ -95,10 +93,6 @@ The details page should have the buttons:
 x `Cancel` button, which should bring the user to the Details Page
 x `Save` button, which should update the title and description in the database and bring the user to the Details Page
   
-
-
-
-
 > Base functionality does not require the current values (the existing movie title and description) to populate in the input and textarea.
 > Base functionality does not require the movie information to load correctly after refresh of the browser.
 
@@ -108,9 +102,9 @@ x `Save` button, which should update the title and description in the database a
 - [x] Invest some time in styling it up!
     - [x] Research grids for you movie posters on the Move List page
     - [x] Add route change animations
-- [/] Commit your code frequently! You should have at 15+ commits on a project of this size. Use branches to help break down your features.
+- [x] Commit your code frequently! You should have at 15+ commits on a project of this size. Use branches to help break down your features.
 - [x] Comment your code.
-- [ ] Update this README to include a description of the project in your own words.
+- [x] Update this README to include a description of the project in your own words.
 
 ## Stretch Goals
 
